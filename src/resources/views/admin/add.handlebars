@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/admin-style/add.css" />
+
+<div class="product_form--container">
+    <form action="add" method="post" class="product-form">
+        <h2>Thêm Sản Phẩm</h2>
+        <div class="form-group">
+            <label for="title">Tên Sản Phẩm</label>
+            <input type="text" id="title" name="title" required />
+        </div>
+        <div class="form-group">
+            <label for="price">Giá</label>
+            <input type="number" id="price" name="price" step="0.01" required />
+        </div>
+        <div class="form-group full-width">
+            <label for="description">Mô Tả</label>
+            <textarea id="description" name="description" rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Danh Mục</label>
+            <select id="category" name="category" required>
+                {{#each categories}}
+                <option value="{{ slug }}">{{ name }}</option>
+                {{/each }} {{!--
+                <option value="men's clothing">Quần áo nam</option>
+                <option value="women's clothing">Quần áo nữ</option>
+                <option value="jewelry">Trang sức</option>
+                <option value="electronics">Điện tử</option>
+                --}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="image">URL Ảnh</label>
+            <input type="url" id="image" name="image" required oninput="updateImagePreview()" />
+        </div>
+        <div class="form-group full-width">
+            <label>Ảnh Preview</label>
+            <img id="imagePreview" class="image-preview" alt="Preview sẽ xuất hiện tại đây" />
+        </div>
+        <div class="form-group full-width">
+            <button type="submit">Thêm Sản Phẩm</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/admin/add.js"></script>

@@ -1,0 +1,122 @@
+<style>
+    .main-img {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+    }
+    .small-img-row {
+        display: flex;
+        margin-top: 10px;
+    }
+    .small-img-col {
+        flex: 1;
+        padding: 5px;
+    }
+    .small-img {
+        width: 100%;
+        object-fit: cover;
+    }
+    .btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn:hover {
+        background-color: #45a049;
+    }
+    .rating i {
+        color: #ffcc00;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .col-2,
+    .col-4 {
+        flex: 1;
+        padding: 10px;
+    }
+    .small-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .input-field {
+        padding: 10px;
+        margin: 10px 0;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .title {
+        font-size: 2em;
+        margin: 20px 0;
+    }
+    .product-list {
+        margin-top: 20px;
+    }
+    .core {
+    }
+    .core h2 {
+        text-align: center;
+    }
+</style>
+<div class="small-container core">
+    <h2>Sửa thông tin sản phẩm</h2>
+    <form id="addProductForm" method="post" action="/admin/edit/{{ product.slug }}">
+        <label for="productName">Tên sản phẩm</label>
+        <input
+            type="text"
+            id="productName"
+            name="title"
+            class="input-field"
+            value="{{ product.title }}"
+            placeholder="Tên sản phẩm"
+            required
+        />
+
+        <label for="productDesc">Mô tả</label>
+        <textarea id="productDesc" class="input-field" name="description" placeholder="Mô tả sản phẩm" required>
+{{ product.description }}</textarea
+        >
+        <label for="productAmount">Số lượng</label>
+        <input
+            type="number"
+            id="productAmount"
+            value="{{ product.amount }}"
+            name="amount"
+            class="input-field"
+            placeholder="Số lượng tồn"
+            required
+        />
+        <label for="productPrice">Giá</label>
+        <input
+            type="number"
+            id="productPrice"
+            value="{{ product.price }}"
+            name="price"
+            class="input-field"
+            placeholder="Giá sản phẩm"
+            required
+        />
+
+        <label for="productImage">Hình ảnh sản phẩm</label>
+        <input
+            type="text"
+            id="productImage"
+            value="{{ product.image }}"
+            placeholder="Link hình hảnh mô tả"
+            name="image"
+            class="input-field"
+            required
+        />
+
+        <button type="submit" class="btn">Sửa Sản Phẩm</button>
+    </form>
+</div>

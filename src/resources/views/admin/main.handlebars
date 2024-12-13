@@ -1,0 +1,140 @@
+<style>
+    .main-img {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+    }
+    .small-img-row {
+        display: flex;
+        margin-top: 10px;
+    }
+    .small-img-col {
+        flex: 1;
+        padding: 5px;
+    }
+    .small-img {
+        width: 100%;
+        object-fit: cover;
+    }
+    .btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn:hover {
+        background-color: #45a049;
+    }
+    .rating i {
+        color: #ffcc00;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .col-2,
+    .col-4 {
+        flex: 1;
+        padding: 10px;
+    }
+    .small-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .input-field {
+        padding: 10px;
+        margin: 10px 0;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .title {
+        font-size: 2em;
+        margin: 20px 0;
+    }
+    .product-list {
+        margin-top: 20px;
+    }
+    .product-list .col-4 {
+        margin-right: 30px;
+    }
+</style>
+
+<!------------------------------ Admin Product Management ------------------------------>
+<div class="small-container">
+    <h2 class="title">Quản lý Sản Phẩm</h2>
+
+    <!-- Add New Product Form -->
+    <div>
+        <h3>Thêm Sản Phẩm Mới</h3>
+        <form id="addProductForm" method="post" action="/admin/add">
+            <label for="productName">Tên sản phẩm</label>
+            <input type="text" id="productName" name="title" class="input-field" placeholder="Tên sản phẩm" required />
+
+            <label for="productDesc">Mô tả</label>
+            <textarea
+                id="productDesc"
+                class="input-field"
+                name="description"
+                placeholder="Mô tả sản phẩm"
+                required
+            ></textarea>
+
+            <label for="productPrice">Giá</label>
+            <input
+                type="number"
+                name="price"
+                id="productPrice"
+                class="input-field"
+                placeholder="Giá sản phẩm"
+                required
+            />
+
+            <label for="productImage">Hình ảnh sản phẩm</label>
+            <input
+                name="image"
+                type="text"
+                id="productImage"
+                placeholder="Link ảnh sản phẩm"
+                class="input-field"
+                required
+            />
+            <button type="submit" class="btn">Thêm Sản Phẩm</button>
+        </form>
+    </div>
+
+    <!-- Product List -->
+    <div class="product-list">
+        <h3>Danh sách Sản Phẩm</h3>
+        <div class="row">
+            <!-- Example product entry -->
+            {{#each products }}
+            <div class="col-4">
+                <img src="{{ image }}" class="main-img" />
+                <h4>{{title}}</h4>
+                <p>${{price}}</p>
+                <a href="/admin/edit/{{ slug }}" class="btn">Sửa</a>
+                <form
+                    class="btn"
+                    method="post"
+                    action="/admin/delete/{{ slug }}"
+                    style="background-color: red; padding: 0"
+                >
+                    <button
+                        class="btn"
+                        style="padding: 18px; background: transparent; border: none; color: #fff; margin: 0"
+                    >
+                        Xóa
+                    </button>
+                </form>
+            </div>
+            {{/each }}
+        </div>
+    </div>
+</div>

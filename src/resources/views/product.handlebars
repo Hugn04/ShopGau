@@ -1,0 +1,105 @@
+<style>
+    .header-product {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+    }
+    .seller {
+        position: absolute;
+        left: 10;
+        top: 10;
+        background: rgb(255, 120, 120);
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    .col-4 {
+        position: relative;
+    }
+
+    .filter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 600px;
+    }
+
+    .filter-container select {
+        width: 150px;
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .filter-container button {
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .filter-container button {
+        background-color: #28a745;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .filter-container button:hover {
+        background-color: #218838;
+    }
+</style>
+<div class="small-container">
+    <div class="row header-product">
+        <h2>Tất cả sản phẩm</h2>
+        <div class="filter-container">
+            <label for="type">Lọc theo:</label>
+            <select id="type">
+                <option value="all">Mặc định</option>
+                <option value="speed">Bán chạy</option>
+                <option value="price">Giá tiền</option>
+                <option value="name">Tên</option>
+            </select>
+
+            <label for="sort">Giá:</label>
+            <select id="sort">
+                <option value="all">Mặc định</option>
+                <option value="asc">Tăng dần</option>
+                <option value="des">Giảm dần</option>
+            </select>
+
+            <button id="applyFilters">Áp dụng</button>
+        </div>
+        {{!--
+        <select name="">
+            <option value="1">Default sorting</option>
+            <option>Short by price</option>
+            <option>Short by popularity</option>
+            <option>Short by rating</option>
+            <option>Short by sale</option>
+        </select>
+        --}}
+    </div>
+
+    <!--<h2 class="title" >Featured Products</h2>-->
+    <div class="row">
+        {{#each product }}
+        <div class="col-4">
+            <div class="seller">Đã bán {{sold}}</div>
+            <a href="product/{{ slug }}"><img src="{{ image }}" /></a>
+            <a href="product/{{ slug }}"><h4>{{title}}</h4></a>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{price}}</p>
+        </div>
+        {{/each }}
+    </div>
+</div>
+<script src="/js/product.js"></script>

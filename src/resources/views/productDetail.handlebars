@@ -1,0 +1,79 @@
+<style>
+    .main-img {
+        height: 412px;
+        width: 475px;
+        object-fit: cover;
+    }
+</style>
+<!------------------------------ Single product details------------------------------>
+<div class="small-container single-product">
+    <!--<h2 class="title" >Featured Products</h2>-->
+    <div class="row">
+        <div class="col-2">
+            <img class="main-img" src="{{ product.image }}" width="100%" id="productImg" />
+
+            <div class="small-img-row">
+                <div class="small-img-col">
+                    <img src="{{ product.image }}" width="100%" class="small-img" />
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ product.image }}" width="100%" class="small-img" />
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ product.image }}" width="100%" class="small-img" />
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ product.image }}" width="100%" class="small-img" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <p>Trang chủ / {{product.title}}</p>
+            <h1>{{product.title}}</h1>
+            <h4>${{product.price}}</h4>
+
+            {{!-- amount, proID, userID --}}
+            <form style="display: inline-block" method="post" action="/product/add-to-cart/{{ product.slug }}">
+                <label for="amount">Số lượng</label>
+                <input type="number" name="amount" value="1" />
+                <input type="text" name="userID" value="{{user.id }}" hidden />
+                <input type="text" name="proID" value="{{ product._id }}" hidden />
+
+                <button class="btn">Thêm vào giỏ hàng</button>
+            </form>
+
+            <h3>Mô tả sản phẩm <i class="fa fa-indent"></i></h3>
+            <br />
+            <p>{{product.description}}</p>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------Title------------------------------------->
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Có thể bạn cũng thích</h2>
+        <a href="/products"><p>Nhiều hơn</p></a>
+    </div>
+</div>
+
+<!----------------------------------products------------------------------------->
+<div class="small-container">
+    <div class="row">
+        {{#each products }}
+        <div class="col-4">
+            <a href="/product/{{ slug }}"><img src="{{ image }}" /></a>
+            <a href="/product/{{ slug }}"><h4>{{title}}</h4></a>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>${{price}}</p>
+        </div>
+        {{/each }}
+    </div>
+</div>
